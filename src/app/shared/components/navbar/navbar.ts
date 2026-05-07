@@ -16,10 +16,9 @@ interface NavItem {
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-
   readonly navItems: NavItem[] = [
     { label: 'Dashboard', icon: 'dashboard', path: '/dashboard' },
-    { label: 'Filmes', icon: 'movie', path: '/filmes' },
+    { label: 'Movies', icon: 'movie', path: '/movies' },
   ];
 
   readonly year = new Date().getFullYear();
