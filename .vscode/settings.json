@@ -1,0 +1,11 @@
+{
+    "workbench.tree.indent": 12,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "'Fira Code iScript'",
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.formatOnPaste": true,
+    "editor.detectIndentation": false,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true
+}

@@ -22,7 +22,6 @@ export class App {
     this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))
     .subscribe(() => {
-      console.log("Current URL:", this.router.url);
       const url = this.router.url;
       this.pageTitle = this.routeTitles[url] ?? '';
     });

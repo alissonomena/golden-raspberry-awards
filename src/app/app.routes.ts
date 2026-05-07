@@ -12,7 +12,7 @@ export const routes: Routes = [
     },
     {
         path: 'filmes',
-        loadComponent: () => import('./pages/lista-filmes/lista-filmes').then(c => c.ListaFilmes)
+        loadComponent: () => import('./pages/movies/movies').then(c => c.Movies)
     }, 
     {
         path: '**',

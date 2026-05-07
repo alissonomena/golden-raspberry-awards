@@ -1,0 +1,60 @@
+<div class="movies">
+    <div class="movies__card">
+        <h3 class="movies__title">List movies</h3>
+
+        <div class="movies__filters">
+            <mat-form-field appearance="outline">
+                <mat-label>Filter by year</mat-label>
+                <input matInput [(ngModel)]="filterYear" (ngModelChange)="onFilterChange()" placeholder="Ex.: 2026" type="number" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Winner?</mat-label>
+                <mat-select [(ngModel)]="filterWinner" (ngModelChange)="onFilterChange()">
+                    <mat-option value="">All</mat-option>
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        @if(loading()) {
+            <div class="movies__spinner">
+                <mat-spinner diameter="40" />
+            </div>
+        } @else {
+            <table mat-table [dataSource]="data()" class="movies__table">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="year">
+                    <th mat-header-cell *matHeaderCellDef>Year</th>
+                    <td mat-cell *matCellDef="let row">{{ row.year }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef>Title</th>
+                    <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+                </ng-container>
+                
+                <ng-container matColumnDef="winner">
+                    <th mat-header-cell *matHeaderCellDef>Winner?</th>
+                    <td mat-cell *matCellDef="let row">{{ row.winner ? 'Yes' : 'No' }}</td>
+                </ng-container>''
+                
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns"></tr>
+            </table>
+
+            <mat-paginator 
+                [length]="totalElements" 
+                [pageSize]="pageSize" 
+                [pageIndex]="pageIndex" 
+                [pageSizeOptions]="[10, 15, 25]" 
+                (page)="onPageChange($event)"
+            />
+        }
+    </div>
+</div>

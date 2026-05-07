@@ -17,7 +17,7 @@ export class MovieService {
     getMovies(params: MovieParams = {}): Observable<MoviePage> {
         let httpParams = new HttpParams()
             .set('page', params.page ?? 0)
-            .set('size', params.size ?? 12);
+            .set('size', params.size ?? 10);
 
         if (params.year !== undefined) {
             httpParams = httpParams.set('year', params.year);

@@ -25,6 +25,9 @@ export class WinnersByYear implements OnInit {
     this.search();
   }
 
+  /**
+   * Método para buscar os vencedores de um ano específico.
+   */
   search(year: number = 2026): void {
     if(this.searchYear)
       year = parseInt(this.searchYear);
