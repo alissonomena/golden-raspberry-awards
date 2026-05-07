@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    height: 60px;
+    border-bottom: 1px solid #e8e8e8;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    &__menu-btn {
+        color: #1a1a2e;
+        display: none;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a2e;
+        letter-spacing: 0.2px;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    mat-icon {
+        color: #1a1a2e;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0 16px !important;
+
+        &__menu-btn {
+            display: inline-flex;
+        }
+
+        &__title {
+            font-size: 14px;
+        }
+    }
+}

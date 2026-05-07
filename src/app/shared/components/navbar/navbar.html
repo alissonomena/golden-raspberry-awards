@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="navbar__brand">
+        <mat-icon class="navbar__brand-icon">emoji_events</mat-icon>
+        <div class="navbar__brand-text">Golden Raspberry <strong>Awards</strong></div>
+    </div>
+
+    <mat-nav-list class="navbar__list">
+        @for (item of navItems; track item.path) {
+            <a mat-list-item [routerLink]="item.path" routerLinkActive="navbar__item--active" class="navbar__item">
+                <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+                <span matListItemTitle class="navbar__item-label">{{ item.label }}</span>
+            </a>
+        }
+    </mat-nav-list>
+
+    <div class="navbar__footer">
+        <span>Golden Raspberry Awards {{ year }}</span>
+    </div>
+</nav>
