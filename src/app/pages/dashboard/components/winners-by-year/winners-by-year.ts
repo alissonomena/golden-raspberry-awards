@@ -10,14 +10,21 @@ import { Movie } from '../../../../core/models/movie.model';
 
 @Component({
   selector: 'app-winners-by-year',
-  imports: [FormsModule, MatTableModule, MatProgressSpinnerModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [
+    FormsModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './winners-by-year.html',
 })
 export class WinnersByYear implements OnInit {
   private readonly movieService = inject(MovieService);
 
   data = signal<Movie[]>([]);
-  columns = ['id', 'year', 'title'];
+  columns: string[] = ['id', 'year', 'title'];
   searchYear = '';
   loading = signal<boolean>(true);
 
@@ -29,18 +36,17 @@ export class WinnersByYear implements OnInit {
    * Método para buscar os vencedores de um ano específico.
    */
   search(year: number = 2026): void {
-    if(this.searchYear)
-      year = parseInt(this.searchYear);
-    
-    if(!year) return;
-    
+    if (this.searchYear) year = parseInt(this.searchYear);
+
+    if (!year) return;
+
     this.loading.set(true);
     this.movieService.getWinnersByYear(year).subscribe({
       next: (res) => {
         this.data.set(res || []);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 }

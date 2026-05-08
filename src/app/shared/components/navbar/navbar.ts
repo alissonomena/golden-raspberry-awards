@@ -21,5 +21,5 @@ export class Navbar {
     { label: 'Movies', icon: 'movie', path: '/movies' },
   ];
 
-  readonly year = new Date().getFullYear();
+  readonly year: number = new Date().getFullYear();
 }

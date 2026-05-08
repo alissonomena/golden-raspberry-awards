@@ -14,18 +14,19 @@ export class TopStudios implements OnInit {
   private readonly movieService = inject(MovieService);
 
   data = signal<Studio[]>([]);
-  columns = ['name', 'winCount'];
+  columns: string[] = ['name', 'winCount'];
   loading = signal<boolean>(true);
 
   ngOnInit(): void {
-    this.movieService.getStudiosWithWinCount().pipe(
-      map(res => res.studios.sort((a, b) => b.winCount - a.winCount).slice(0, 3))
-    ).subscribe({
-      next: (res) => {
-        this.data.set(res || []);
-        this.loading.set(false);
-      },
-      error: () => this.loading.set(false)
-    });
+    this.movieService
+      .getStudiosWithWinCount()
+      .pipe(map((res) => res.studios.sort((a, b) => b.winCount - a.winCount).slice(0, 3)))
+      .subscribe({
+        next: (res) => {
+          this.data.set(res || []);
+          this.loading.set(false);
+        },
+        error: () => this.loading.set(false),
+      });
   }
 }

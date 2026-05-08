@@ -12,7 +12,7 @@ import { ProducerInterval } from '../../../../core/models/movie.model';
 export class ProducersInterval implements OnInit {
   private readonly movieService = inject(MovieService);
 
-  columns = ['producer', 'interval', 'previousWin', 'followingWin'];
+  columns: string[] = ['producer', 'interval', 'previousWin', 'followingWin'];
   min = signal<ProducerInterval[]>([]);
   max = signal<ProducerInterval[]>([]);
   loading = signal<boolean>(true);
@@ -24,7 +24,7 @@ export class ProducersInterval implements OnInit {
         this.max.set(res.max || []);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 }

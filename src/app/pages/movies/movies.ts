@@ -10,7 +10,14 @@ import { Movie, MovieParams } from '../../core/models/movie.model';
 
 @Component({
   selector: 'app-movies',
-  imports: [FormsModule, MatTableModule, MatPaginatorModule, MatInputModule, MatSelectModule, MatProgressSpinnerModule],
+  imports: [
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './movies.html',
   styleUrl: './movies.scss',
 })
@@ -18,7 +25,7 @@ export class Movies implements OnInit {
   private readonly movieService = inject(MovieService);
 
   data = signal<Movie[]>([]);
-  columns = ['id', 'year', 'title', 'winner'];
+  columns: string[] = ['id', 'year', 'title', 'winner'];
   loading = signal(false);
   filterYear: string = '';
   filterWinner: string = '';
@@ -40,8 +47,8 @@ export class Movies implements OnInit {
       page: this.pageIndex,
       size: this.pageSize,
       year: this.filterYear ? parseInt(this.filterYear) : undefined,
-      winner: this.filterWinner !== '' ? this.filterWinner === 'true' : undefined
-    }
+      winner: this.filterWinner !== '' ? this.filterWinner === 'true' : undefined,
+    };
 
     this.movieService.getMovies(params).subscribe({
       next: (res) => {
@@ -49,7 +56,7 @@ export class Movies implements OnInit {
         this.totalElements = res.totalElements;
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 

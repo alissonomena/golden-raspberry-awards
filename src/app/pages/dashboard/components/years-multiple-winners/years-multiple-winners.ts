@@ -3,7 +3,6 @@ import { MovieService } from '../../../../core/services/movie.service';
 import { YearWinnerCount } from '../../../../core/models/movie.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-years-multiple-winners',
@@ -14,7 +13,7 @@ export class YearsMultipleWinners implements OnInit {
   private readonly movieService = inject(MovieService);
 
   data = signal<YearWinnerCount[]>([]);
-  columns = ['year', 'winnerCount'];
+  columns: string[] = ['year', 'winnerCount'];
   loading = signal<boolean>(true);
 
   ngOnInit(): void {
@@ -23,7 +22,7 @@ export class YearsMultipleWinners implements OnInit {
         this.data.set(res.years || []);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 }
